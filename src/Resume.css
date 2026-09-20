@@ -1,0 +1,184 @@
+/* The Resume section is a scannable "captain's record": a parchment document
+   panel laid over a dark ocean background. Built from the same data already
+   defined elsewhere in App.jsx (voyage, skillCategories, projects) — nothing
+   new is invented here, only presented compactly. */
+
+.resume{
+  position:relative;
+  min-height:640px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  align-items:center;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 15% 20%,rgba(226,184,81,.06),transparent 55%),
+    var(--deep);
+  padding-right:0;
+}
+
+.resume-card{
+  position:relative;
+  z-index:1;
+  max-width:640px;
+  padding:clamp(2rem,4vw,3.2rem) clamp(2rem,4vw,3.4rem);
+  background:var(--paper);
+  color:var(--ink);
+  border:1px solid #b89d72;
+  box-shadow:14px 14px 0 rgba(2,11,18,.55);
+}
+.resume-card:before{
+  content:'LOG';
+  position:absolute;
+  right:1rem;
+  top:-3.6rem;
+  z-index:-1;
+  color:rgba(112,72,58,.08);
+  font:700 8rem 'Barlow Condensed';
+  pointer-events:none;
+}
+.resume-card .eyebrow{ color:var(--red-ink); }
+.resume-card h2{ font-size:clamp(2.4rem,5vw,5.2rem); margin:.6rem 0; color:var(--ink); }
+.resume-card>p{ color:#4a5650; line-height:1.7; }
+
+.resume-grid{
+  position:relative;
+  z-index:1;
+  margin-top:2rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.2rem 1.8rem;
+}
+.resume-block{
+  padding-top:1rem;
+  border-top:2px solid var(--wood);
+}
+.resume-block h3{
+  margin:0 0 .7rem;
+  font:700 .78rem 'Barlow Condensed';
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--red-ink);
+}
+.resume-block ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:.55rem;
+}
+.resume-block li{
+  display:flex;
+  flex-direction:column;
+  gap:.15rem;
+}
+.resume-block li b{
+  font:600 .92rem 'Playfair Display';
+  color:var(--ink);
+}
+.resume-block li span{
+  font:10px 'DM Mono';
+  color:#6b7568;
+  letter-spacing:.05em;
+}
+.resume-chip-list{ flex-direction:row!important; flex-wrap:wrap; gap:.5rem!important; }
+.resume-chip-list li{
+  padding:.3rem .65rem;
+  border:1px solid var(--wood);
+  font:700 .72rem 'Barlow Condensed';
+  letter-spacing:.05em;
+  color:#2f2b22;
+}
+
+.resume-cta{
+  position:relative;
+  z-index:1;
+  margin-top:2.2rem;
+  padding-top:1.6rem;
+  border-top:1px solid rgba(112,72,58,.35);
+}
+.outline{ margin-top:0; border-color:var(--wood); color:var(--ink); }
+.outline:hover{ background:var(--wood); color:var(--paper); }
+
+.resume-panel{
+  position:relative;
+  width:100%;
+  height:100%;
+  min-height:640px;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 30% 24%,rgba(226,184,81,.1),transparent 55%),
+    repeating-linear-gradient(135deg,rgba(226,184,81,.05) 0 2px,transparent 2px 28px),
+    var(--ocean);
+}
+.resume-route{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  color:rgba(226,184,81,.4);
+}
+.resume-panel-mark{
+  position:absolute;
+  z-index:1;
+  top:1.3rem;
+  right:1.4rem;
+  color:rgba(226,184,81,.55);
+  font:700 11px 'DM Mono';
+  letter-spacing:.1em;
+}
+.resume-meta{
+  position:absolute;
+  z-index:1;
+  left:1.4rem;
+  bottom:1.3rem;
+  display:flex;
+  flex-direction:column;
+  gap:.3rem;
+  font:9px 'DM Mono';
+  letter-spacing:.1em;
+  color:rgba(232,221,195,.55);
+  text-transform:uppercase;
+}
+.resume-seal{
+  position:relative;
+  z-index:1;
+  width:clamp(160px,22vw,230px);
+  aspect-ratio:1;
+  border-radius:50%;
+  border:3px double var(--gold);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:var(--gold);
+  transform:rotate(-12deg);
+  background:radial-gradient(circle,rgba(2,11,18,.5),transparent 70%);
+}
+.resume-seal span{
+  font:700 .92rem 'Barlow Condensed';
+  letter-spacing:.22em;
+}
+.resume-seal i{
+  display:block;
+  margin:.5rem 0;
+  font-style:normal;
+  font-size:1.5rem;
+}
+.resume-seal small{
+  display:block;
+  font:8px 'DM Mono';
+  letter-spacing:.14em;
+  color:rgba(232,221,195,.6);
+}
+
+@media(max-width:800px){
+  .resume{ grid-template-columns:1fr; padding:3.5rem clamp(1.25rem,10vw,11rem); }
+  .resume-panel{ display:none; }
+  .resume-card{ max-width:100%; padding:1.6rem 1.5rem; box-shadow:8px 8px 0 rgba(2,11,18,.55); }
+  .resume-grid{ grid-template-columns:1fr; gap:1.5rem; }
+}
+@media(min-width:801px) and (max-width:1100px){
+  .resume-grid{ grid-template-columns:1fr; }
+}

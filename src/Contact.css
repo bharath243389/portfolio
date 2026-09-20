@@ -1,0 +1,114 @@
+/* Contact is the closing beat of the voyage: the freedom-pose.mp4 clip plays
+   as a real, visible cinematic backdrop (not buried under an opaque wash),
+   with just enough gradient + stars over it to keep the CTA readable. */
+
+.contact{
+  position:relative;
+  min-height:88svh;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:#01060a;
+}
+.contact-video{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:50% 30%;
+  filter:saturate(.85) brightness(.72);
+}
+.contact-wash{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(ellipse at 50% 30%,transparent 35%,rgba(1,6,10,.55) 78%),
+    linear-gradient(90deg,rgba(1,6,10,.82),rgba(1,6,10,.15) 50%,rgba(1,6,10,.82)),
+    linear-gradient(0deg,rgba(1,6,10,.92),transparent 32%,transparent 66%,rgba(1,6,10,.85));
+}
+.contact-stars{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.55) .8px,transparent 1px);
+  background-size:64px 64px;
+}
+.contact-silhouette{
+  position:absolute;
+  z-index:1;
+  left:0; right:0; bottom:-2px;
+  width:100%;
+  height:9vw;
+  min-height:56px;
+  max-height:110px;
+  pointer-events:none;
+}
+.contact-silhouette path{
+  fill:#062333;
+  opacity:.85;
+}
+
+.contact-content{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+  text-align:center;
+  padding:5rem 1.25rem;
+}
+.contact-content .eyebrow{ justify-content:center; }
+.contact h2{
+  font-size:clamp(2.6rem,7vw,6.2rem);
+  margin:.8rem 0 1rem;
+  text-transform:uppercase;
+  text-shadow:0 10px 40px rgba(0,0,0,.6);
+}
+.contact-content>p:not(.eyebrow){ color:#d4d0c4; line-height:1.7; }
+.contact-content .button{ margin-top:1.5rem; }
+.contact-note{ font-size:.72rem!important; margin-top:1rem; color:#999!important; }
+
+.contact-links{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:.8rem;
+  margin-top:1.6rem;
+}
+.contact-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.6rem .9rem;
+  border:1px solid rgba(226,184,81,.35);
+  background:transparent;
+  color:rgba(232,221,195,.75);
+  text-decoration:none;
+  font:700 .74rem 'Barlow Condensed';
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  transition:border-color .25s ease,color .25s ease;
+}
+.contact-link:disabled{ cursor:not-allowed; opacity:.72; }
+a.contact-link:hover{ border-color:var(--gold); color:var(--paper); }
+.contact-link small{
+  font:9px 'DM Mono';
+  letter-spacing:.06em;
+  color:var(--red);
+  text-transform:none;
+}
+
+@media(max-width:800px){
+  .contact{ min-height:80svh; }
+  .contact-content{ padding:3.5rem 1.25rem; }
+  .contact-stars{ background-size:44px 44px; }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .contact-video{ filter:saturate(.7) brightness(.6); }
+}

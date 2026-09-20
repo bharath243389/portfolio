@@ -1,0 +1,149 @@
+/* The Captain's Toolkit reuses the exact same skills data as the Navigation
+   Kit section, but reads as ship's-bridge instrumentation rather than a
+   chart: circular gauges instead of bordered tiles, on a dark "engine room"
+   backdrop instead of parchment, so the two sections don't feel repetitive
+   even though they share a data source. Kept in its own file, same
+   convention as the rest of the section stylesheets. */
+
+.toolkit{
+  position:relative;
+  background:#0a1c24;
+  color:var(--paper);
+  overflow:hidden;
+  background-image:
+    radial-gradient(rgba(226,184,81,.06) 1px,transparent 1px);
+  background-size:22px 22px;
+}
+.toolkit:after{
+  content:'INSTRUMENTS';
+  position:absolute;
+  right:-1.2rem;
+  top:8%;
+  z-index:0;
+  color:rgba(226,184,81,.06);
+  font:700 10vw 'Barlow Condensed';
+  writing-mode:vertical-rl;
+  letter-spacing:.05em;
+  pointer-events:none;
+}
+.toolkit .eyebrow{ color:var(--gold); }
+.toolkit .section-copy{ color:#b6c6c7; }
+
+.toolkit-intro{
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:2rem;
+  margin-bottom:clamp(3rem,7vw,5rem);
+}
+.toolkit .heading{ max-width:640px; }
+
+.toolkit-hub{
+  flex:none;
+  width:108px;
+  height:108px;
+  color:var(--gold);
+  opacity:.85;
+  animation:toolkit-turn 40s linear infinite;
+}
+.toolkit-hub svg{ width:100%; height:100%; }
+@keyframes toolkit-turn{ to{ transform:rotate(360deg); } }
+
+.toolkit-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:1.4rem;
+}
+
+.tool-gauge{
+  position:relative;
+  padding:1.7rem 1.5rem 1.9rem;
+  text-align:center;
+  background:rgba(226,184,81,.045);
+  border:1px solid rgba(226,184,81,.22);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,border-color .35s ease;
+}
+.tool-gauge:hover{
+  transform:translateY(-6px);
+  border-color:rgba(226,184,81,.6);
+  box-shadow:0 20px 38px rgba(0,0,0,.4);
+}
+
+.tool-gauge-dial{
+  position:relative;
+  width:78px;
+  height:78px;
+  margin:0 auto 1.1rem;
+  border-radius:50%;
+  border:2px solid var(--gold);
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle at 35% 30%,rgba(226,184,81,.18),transparent 70%);
+}
+.tool-gauge-dial:before{
+  content:'';
+  position:absolute;
+  inset:-7px;
+  border-radius:50%;
+  border:1px dashed rgba(226,184,81,.35);
+}
+.tool-gauge-needle{
+  position:absolute;
+  left:50%;
+  bottom:50%;
+  width:2px;
+  height:30px;
+  background:linear-gradient(0deg,transparent,var(--red));
+  transform-origin:bottom center;
+}
+.tool-gauge-bearing{
+  position:relative;
+  z-index:1;
+  font:700 11px 'DM Mono';
+  letter-spacing:.04em;
+  color:var(--gold);
+  background:#0a1c24;
+  padding:.1rem .3rem;
+  border-radius:2px;
+}
+
+.tool-gauge h3{
+  margin:0 0 .9rem;
+  font:700 1.02rem 'Barlow Condensed';
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--paper);
+}
+
+.tool-pins{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.45rem;
+}
+.tool-pins li{
+  padding:.32rem .6rem;
+  background:rgba(2,11,18,.45);
+  border:1px solid rgba(226,184,81,.25);
+  font:700 .68rem 'Barlow Condensed';
+  letter-spacing:.03em;
+  color:#e8ddc3;
+}
+
+@media(max-width:800px){
+  .toolkit-intro{ flex-direction:column; align-items:flex-start; gap:1.4rem; }
+  .toolkit-hub{ width:80px; height:80px; }
+  .toolkit-grid{ grid-template-columns:1fr; }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .toolkit-hub{ animation:none; }
+  .tool-gauge{ transition:none; }
+}

@@ -1,0 +1,142 @@
+/* Skills are framed as a navigation chart: each category is a bearing on the
+   route, plotted around a central compass image. Kept in its own file, same
+   convention as Hero.css / Projects.css / About.css / Experience.css. */
+
+.skills{
+  position:relative;
+  background:var(--paper);
+  color:var(--ink);
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:clamp(2.5rem,7vw,7rem);
+  align-items:center;
+}
+.skills:after{
+  content:'SKILL CHART';
+  position:absolute;
+  left:-1.4rem;
+  bottom:6%;
+  z-index:0;
+  color:rgba(112,72,58,.06);
+  font:700 9.5vw 'Barlow Condensed';
+  writing-mode:vertical-rl;
+  letter-spacing:.05em;
+  pointer-events:none;
+}
+.skills .eyebrow{ color:var(--red-ink); }
+.skills .section-copy{ color:#4f5c57; }
+
+.skills-art{
+  position:relative;
+  z-index:1;
+  aspect-ratio:1;
+  overflow:hidden;
+  border-radius:50%;
+  border:10px solid var(--wood);
+  outline:1px solid var(--gold);
+  outline-offset:12px;
+  background:var(--ocean);
+  color:var(--gold);
+}
+.compass-svg{
+  width:100%;
+  height:100%;
+  animation:skills-turn 60s linear infinite;
+}
+.skills-art:before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:1;
+  border-radius:50%;
+  background:
+    repeating-conic-gradient(rgba(226,184,81,.16) 0deg 2deg,transparent 2deg 90deg);
+  mix-blend-mode:overlay;
+  pointer-events:none;
+}
+@keyframes skills-turn{ to{ transform:rotate(360deg); } }
+@media(prefers-reduced-motion:reduce){
+  .compass-svg{ animation:none; }
+}
+
+/* --- category grid --- */
+.skill-chart{
+  position:relative;
+  z-index:1;
+  margin-top:2.2rem;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1rem 1.4rem;
+}
+.skill-category{
+  position:relative;
+  padding:1.3rem 1.4rem 1.5rem;
+  background:rgba(112,72,58,.06);
+  border:1px solid rgba(112,72,58,.28);
+}
+.skill-category:before{
+  content:'';
+  position:absolute;
+  left:1.4rem;
+  right:1.4rem;
+  top:2.55rem;
+  border-top:1px dashed rgba(112,72,58,.35);
+}
+.skill-category-head{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:baseline;
+  gap:.7rem;
+  background:inherit;
+}
+.skill-category-head h3{
+  margin:0;
+  font:700 1.05rem 'Barlow Condensed';
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--ink);
+}
+.skill-bearing{
+  flex:none;
+  padding:.15rem .4rem;
+  border:1px solid rgba(196,54,45,.4);
+  font:10px 'DM Mono';
+  letter-spacing:.08em;
+  color:var(--red-ink);
+}
+
+.skill-tags{
+  position:relative;
+  z-index:1;
+  margin:1rem 0 0;
+  padding:0;
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+}
+.skill-tags li{
+  padding:.35rem .7rem;
+  background:var(--paper);
+  border:1px solid var(--wood);
+  font:700 .74rem 'Barlow Condensed';
+  letter-spacing:.04em;
+  color:#3c342a;
+}
+.skill-category-note{
+  position:relative;
+  z-index:1;
+  margin:1rem 0 0;
+  font-size:.76rem;
+  color:#645648;
+  font-style:italic;
+}
+
+@media(max-width:800px){
+  .skills{ grid-template-columns:1fr; }
+  .skills:after{ font-size:20vw; }
+  .skills-art{ max-width:340px; margin:0 auto; }
+  .skill-chart{ grid-template-columns:1fr; margin-top:1.8rem; }
+}

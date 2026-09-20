@@ -1,0 +1,216 @@
+/* The Experience section is framed as a charted route across the Grand Line:
+   each role is a plotted island, connected by a single course line. Kept in
+   its own file, same convention as Hero.css / Projects.css / About.css. */
+
+.experience{
+  position:relative;
+  background:#103d4c;
+  overflow:hidden;
+  background-image:
+    linear-gradient(rgba(226,184,81,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(226,184,81,.05) 1px,transparent 1px);
+  background-size:34px 34px;
+}
+.experience:after{
+  content:'VOYAGE LOG';
+  position:absolute;
+  right:-1.2rem;
+  top:8%;
+  z-index:0;
+  color:rgba(226,184,81,.06);
+  font:700 10.5vw 'Barlow Condensed';
+  writing-mode:vertical-rl;
+  letter-spacing:.05em;
+  pointer-events:none;
+}
+
+.experience-intro{
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:2rem;
+  margin-bottom:clamp(3rem,7vw,5rem);
+}
+.experience .heading{ max-width:640px; }
+.experience .eyebrow{ color:var(--gold); }
+.experience .section-copy{ color:#b6c6c7; }
+
+.experience-compass{
+  position:relative;
+  flex:none;
+  width:96px; height:96px;
+  border:1px solid rgba(226,184,81,.5);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  font-size:2.2rem;
+  animation:voyage-turn 26s linear infinite;
+}
+.experience-compass small{
+  position:absolute;
+  bottom:-1.4rem;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  font:8px 'DM Mono';
+  letter-spacing:.18em;
+  color:rgba(232,221,195,.6);
+}
+@keyframes voyage-turn{ to{ transform:rotate(360deg); } }
+
+/* --- route --- */
+.voyage-route-wrap{
+  position:relative;
+  z-index:1;
+}
+.voyage-line{
+  position:absolute;
+  left:27px;
+  top:14px;
+  bottom:14px;
+  width:0;
+  border-left:2px dashed rgba(226,184,81,.4);
+  transform-origin:top;
+  pointer-events:none;
+}
+.voyage-route{
+  position:relative;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+.voyage-stop{
+  position:relative;
+  display:grid;
+  grid-template-columns:56px 1fr;
+  gap:1.6rem;
+  padding-bottom:clamp(2.4rem,5vw,3.6rem);
+}
+.voyage-stop:last-child{ padding-bottom:0; }
+
+.voyage-marker{
+  position:relative;
+  z-index:1;
+  width:56px; height:56px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#0c303d;
+  border:2px solid var(--gold);
+  color:var(--gold);
+  font:700 .95rem 'Barlow Condensed';
+}
+.voyage-stop.current .voyage-marker{
+  background:var(--gold);
+  color:var(--deep);
+  box-shadow:0 0 0 6px rgba(226,184,81,.18);
+}
+.voyage-stop.current .voyage-marker:before{
+  content:'';
+  position:absolute;
+  inset:-9px;
+  border-radius:50%;
+  border:1px solid rgba(226,184,81,.55);
+  animation:voyage-pulse 2.6s ease-out infinite;
+}
+@keyframes voyage-pulse{
+  0%{ transform:scale(.85); opacity:.9; }
+  100%{ transform:scale(1.35); opacity:0; }
+}
+
+.voyage-card{
+  position:relative;
+  padding:1.5rem 1.7rem;
+  background:rgba(4,17,23,.35);
+  border:1px solid rgba(226,184,81,.18);
+  border-left:3px solid var(--gold);
+}
+.voyage-stop.current .voyage-card{ border-left-color:var(--red); }
+
+.voyage-coords{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:.6rem;
+  margin:0 0 .5rem;
+  font:10px 'DM Mono';
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.voyage-coords span{
+  padding:.15rem .5rem;
+  border:1px solid rgba(226,184,81,.35);
+  color:rgba(232,221,195,.75);
+}
+.voyage-stop.current .voyage-coords span{
+  border-color:rgba(196,54,45,.5);
+  color:#f2c9c4;
+}
+
+.voyage-card h3{
+  margin:0 0 .5rem;
+  font:600 1.7rem 'Playfair Display';
+  color:var(--paper);
+}
+.voyage-card p{
+  margin:0;
+  color:#c2d1cc;
+  line-height:1.7;
+  font-size:.92rem;
+}
+.voyage-tag{
+  display:inline-block;
+  margin-top:1rem;
+  font:9px 'DM Mono';
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(232,221,195,.5);
+}
+
+/* Quiet porthole accent: a different supplied clip from Home/About, played
+   lazily and only while it's actually in view (see useInViewVideo in App.jsx). */
+.experience-porthole{
+  position:absolute;
+  z-index:1;
+  right:clamp(1.5rem,5vw,4.5rem);
+  bottom:clamp(1.5rem,6vw,4rem);
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  overflow:hidden;
+  border:8px solid #0c303d;
+  outline:2px solid rgba(226,184,81,.5);
+  outline-offset:5px;
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  pointer-events:none;
+}
+.experience-porthole video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(.8) brightness(.92);
+}
+
+@media(max-width:800px){
+  .experience-intro{ flex-direction:column; align-items:flex-start; gap:1.4rem; }
+  .experience-compass{ width:72px; height:72px; font-size:1.7rem; }
+  .voyage-line{ left:23px; }
+  .voyage-stop{ grid-template-columns:48px 1fr; gap:1.1rem; }
+  .voyage-marker{ width:48px; height:48px; font-size:.82rem; }
+  .voyage-card{ padding:1.2rem 1.3rem; }
+  .voyage-card h3{ font-size:1.4rem; }
+}
+
+@media(max-width:1000px){
+  .experience-porthole{ display:none; }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .experience-compass,.voyage-stop.current .voyage-marker:before{ animation:none; }
+  .experience-porthole{ display:none; }
+}
