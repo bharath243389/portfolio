@@ -11,7 +11,7 @@ export const portfolio = {
   name: 'Bharath A',
   role: 'AI/ML Engineer',
   location: 'Thoothukudi, Tamil Nadu, India',
-  bio: 'AI/ML engineer from Thoothukudi, currently pursuing a BCA. I build things from scratch — from a from-the-ground-up LLM inference engine for Qwen2.5-0.5B to real-time computer vision apps like MeowCam.',
+  bio: 'Currently pursuing a BCA. I build things from scratch — from an LLM inference engine for Qwen2.5-0.5B to real-time computer vision apps like MeowCam.',
 
   education: {
     degree: 'Bachelor of Computer Applications (BCA)',
